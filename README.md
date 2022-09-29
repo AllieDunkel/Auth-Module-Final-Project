@@ -1,6 +1,5 @@
 # Auth-Module-Final-Project
 
-
 ## Requirements
 
 - Auth server must be deployed
@@ -14,4 +13,3 @@
   - Login with an account
   - Edit account details
   - Delete an account
-
