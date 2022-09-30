@@ -1,31 +1,47 @@
 'use strict';
 
-// 
+// 3rd party and route files
 const express = require('express');
-const cors = require('cors');
-
+const basicAuth = require('./auth/middleware/basic');
+const bearerAuth = require('./auth/middleware/bearer');
+const { userModel } = require('./auth/models/users-model');
+const app = express();
+// const PORT = process.env.PORT || 3002;
 
 const errorHandler = require('./error-handlers/500.js');
-const notFound = require('/error-handlers/404.js');
-const authRoutes = require('./auth/router/index.js');
+const notFound = require('./error-handlers/404.js');
+// const authRoutes = require('./auth/router/index.js');
 
 
-const app = express();
 
 
-app.use(cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// app.use('/api/v2', authRouter);
 
 //Uncomment once you've added in code for the routes folder 
 
-app.use(authRoutes);
-
+// app.use(authRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
+// creating hello route: 
+
+app.get('/welcome', basicAuth, (req, res, next) => {
+  let { name } = req.query;
+  res.status(200).send(`Welcome ${name}, this route is secured using Basic Auth!!`)
+});
+
+app.get('/users', bearerAuth, async (req, res, next) => {
+  let user = await userModel.findAll();
+  let payload = {
+    results: user,
+  };
+  res.status(200).send(payload);
+});
 
 module.exports = {
   server: app,
-  startup: (port)
-}
+  start: (PORT) => app.listen(PORT, console.log('server is running on', PORT)),
+};

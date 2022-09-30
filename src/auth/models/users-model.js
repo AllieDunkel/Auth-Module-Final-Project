@@ -62,5 +62,6 @@ userModel.authenticateBearer = async (token) => {
 
 module.exports = {
   userModel,
+  db: sequelize,
   sequelizeDatabase,
 };
