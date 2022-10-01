@@ -6,23 +6,21 @@ const basicAuth = require('./auth/middleware/basic');
 const bearerAuth = require('./auth/middleware/bearer');
 const { userModel } = require('./auth/models/users-model');
 const app = express();
-// const PORT = process.env.PORT || 3002;
-
+const dogsRouter = require('./auth/routes/dogs');
+const catsRouter = require('./auth/routes/cats');
+const router = require('./auth/router');
 const errorHandler = require('./error-handlers/500.js');
 const notFound = require('./error-handlers/404.js');
-// const authRoutes = require('./auth/router/index.js');
 
-
-
-
+const PORT = process.env.PORT || 3002;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use('/api/v2', authRouter);
 
 //Uncomment once you've added in code for the routes folder 
-
-// app.use(authRoutes);
+app.use(router);
+app.use(dogsRouter);
+app.use(catsRouter);
 app.use(notFound);
 app.use(errorHandler);
 

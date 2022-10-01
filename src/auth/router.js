@@ -9,24 +9,19 @@ const bearerAuth = require('./middleware/bearer');
 
 //define a signup route to create new user in database
 router.post('/signup', async (req, res, next) => {
+  console.log('I am here');
   try {
-    let { username, password, role } = req.body;
-    let encryptPassword = await bcrypt.hash(password ,5);
-    let user;
-    if(!['user', 'writer', 'editor', 'admin'].includes(role)){
-      next('role not correct');
-    } else{
-      user = await userModel.create ({ // not sure if usermodel needs to be here or if it needs to be cat/dog
-      
+    let { username, password } = req.body;
+    let encryptedPassword = await bcrypt.hash(password, 5);
+
+    let user = await userModel.create({
       username,
-      password: encryptPassword,
-      role,
-      });
-    }
+      password: encryptedPassword,
+    });
 
     res.status(200).send(user);
-  } catch(err) {
-    next('signup error occured');
+  } catch (err) {
+    next('signup error occurred');
   }
 });
 
