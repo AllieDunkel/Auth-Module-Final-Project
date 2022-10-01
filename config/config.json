@@ -2,7 +2,7 @@
   "development": {
     "username": "keelen",
     "password": null,
-    "database": "database_development",
+    "database": "Auth-Module-Final-Project",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
