@@ -3,9 +3,9 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const { userModel } = require('../src/auth/models/users-model');
-const basicAuth = require('../src/auth/middleware/basic');
-const bearerAuth = require('../src/auth/middleware/bearer');
+const { userModel } = require('./models/users-model');
+const basicAuth = require('./middleware/basic');
+const bearerAuth = require('./middleware/bearer');
 
 //define a signup route to create new user in database
 router.post('/signup', async (req, res, next) => {
