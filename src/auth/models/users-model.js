@@ -17,7 +17,7 @@ let options = process.env.NODE_ENV === 'production' ? {
 } : {};
 
 
-const sequelizeDatabase = new Sequelize(DATABASE_URL, options);
+ const sequelizeDatabase = new Sequelize(DATABASE_URL, options);
 
 //  File direct route to establish the types of username, password and token. 
 const userModel = sequelizeDatabase.define('Users', {
