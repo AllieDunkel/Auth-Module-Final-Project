@@ -3,9 +3,9 @@
 // both users and index code within the same file.
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { memoryUsage } = require('process');
 const SECRET = process.env.API_SECRET
-
+const { Sequelize, DataTypes } = require('sequelize');
+const DATABASE_URL = process.env.DATABASE_URL;
 
 
 
@@ -17,8 +17,10 @@ let options = process.env.NODE_ENV === 'production' ? {
 } : {};
 
 
+const sequelizeDatabase = new Sequelize(DATABASE_URL, options);
+
 //  File direct route to establish the types of username, password and token. 
-const userModel = this.sequelizeDatabase.define('Users', {
+const userModel = sequelizeDatabase.define('Users', {
   username: {
     type: DataTypes.STRING,
     allowNull: false,
