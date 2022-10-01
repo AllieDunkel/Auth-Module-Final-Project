@@ -43,5 +43,5 @@ app.get('/users', bearerAuth, async (req, res, next) => {
 
 module.exports = {
   server: app,
-  start: (PORT) => app.listen(PORT, console.log('server is running on', PORT)),
+  start: (PORT) => app.listen(PORT, '127.0.0.1',  console.log('server is running on', PORT)),
 };

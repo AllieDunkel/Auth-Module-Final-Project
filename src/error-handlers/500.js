@@ -1,10 +1,12 @@
 'use strict';
 
-module.exports = (err, req, res, next) => {
-  let error = { error: err.message || err };
-  res.statusCode = err.status || 500;
-  res.statusMessage = err.statusMessage || 'Server Error';
-  res.setHeader('Content-Type', 'application/json');
-  res.write(JSON.stringify(error));
-  res.end();
+module.exports = (error, req, res, next) => {
+  res.status(500).send({
+    error: 500,
+    route: req.path,
+    query: req.query,
+    body: req.body,
+    message: typeof(error) === 'string' ? error :  `THIS SERVER HAS AN ERROR: ${error.mesage}`,
+    
+  });
 };
