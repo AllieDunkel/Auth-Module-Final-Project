@@ -1,6 +1,6 @@
 'use strict';
 
-const { userModel } = require('../models/users-model');
+const { userModel } = require('../src/auth/models/users-model');
 
 module.exports = async (req, res, next) => {
     if(!req.headers.authorization) {

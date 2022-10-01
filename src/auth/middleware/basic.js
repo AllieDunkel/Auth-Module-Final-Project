@@ -2,7 +2,7 @@
 
 const bcrypt = require('bcrypt');
 const base64 = require('base-64');
-const { userModel } = require('../models/users-model');
+const { userModel } = require('../models/users-model.js');
 
 //Define basicAuth Middleware.
 // Implement on basic-auth-secured routes only
