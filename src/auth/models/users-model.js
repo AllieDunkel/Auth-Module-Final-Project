@@ -28,16 +28,16 @@ const userModel = sequelizeDatabase.define('Users', {
   password: {
     type: DataTypes.STRING,
     allowNull: false,
-  }, 
-  token: {
-    type: DataTypes.VIRTUAL,
-    get(){
-      return jwt.sign({username: this.username}, process.env.API_SECRET, {expiresIn: '15m'});
-    },
-    set(){
-      return jwt,sign({username: this.usernmame}, process.env.API_SECRET, {expiresIn: '15m'});
-    }
   },
+  // token: {
+  //   type: DataTypes.VIRTUAL,
+  //   get(){
+  //     return jwt.sign({username: this.username}, process.env.API_SECRET, {expiresIn: '15m'});
+  //   },
+  //   set(){
+  //     return jwt,sign({username: this.usernmame}, process.env.API_SECRET, {expiresIn: '15m'});
+  //   }
+  // },
 });
 
 userModel.authenticateBearer = async (token) => {

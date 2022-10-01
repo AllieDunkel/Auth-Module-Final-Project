@@ -3,21 +3,21 @@
 const express = require('express');
 const { dogsModel, catsModel } = require('../models');
 
-const router = express.Router();
+const catsRouter = express.Router();
 
-router.post('/cats', async (req, res, send) => {
+catsRouter.post('/cats', async (req, res, send) => {
   console.log('checking the req body: ', req.body);
 
   const newCat = await catsModel.create(req.body);
   res.status(200).send(newCat);
 });
 
-router.get('/cats', async (req, res, next) => {
+catsRouter.get('/cats', async (req, res, next) => {
   let cats = await catsModel.read();
   res.status(200).send(cats);
 });
 
-router.get('/cats/:id', async (req, res, next)=> {
+catsRouter.get('/cats/:id', async (req, res, next)=> {
   let { id } = req.params;
   console.log('Checking for Id: ', id);
 
@@ -25,13 +25,13 @@ router.get('/cats/:id', async (req, res, next)=> {
   res.status(200).send(cat);
 });
 
-router.put('/cats/:id', async (req, res, next) => {
+catsRouter.put('/cats/:id', async (req, res, next) => {
   let { id } = req.params;
   let cat = await catsModel.update(req.body, id);
   res.status(200).send(cat);
 });
 
-router.delete('/cats/:id', async (req, res, next) => {
+catsRouter.delete('/cats/:id', async (req, res, next) => {
   try{
     let { id } = req.params;
     let message = await catsModel.delete(id);
@@ -41,4 +41,4 @@ router.delete('/cats/:id', async (req, res, next) => {
   }
 });
 
-module.exports = router;
+module.exports = catsRouter;
