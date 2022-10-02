@@ -9,4 +9,4 @@ const PORT = process.env.PORT || 3002;
 
 db.sync().then(() => {
   app.start(PORT);
-  });
+});
