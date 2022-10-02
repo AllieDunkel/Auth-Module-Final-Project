@@ -1,6 +1,6 @@
 'use strict';
 
-models.exports = (capability) => (req, res, next) => {
+module.exports = (capability) => (req, res, next) => {
   try {
     console.log('from acl middleware', req.user);
     if(req.user.capabilities.includes(capability)) {

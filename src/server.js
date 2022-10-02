@@ -4,7 +4,7 @@
 const express = require('express');
 const basicAuth = require('./auth/middleware/basic');
 const bearerAuth = require('./auth/middleware/bearer');
-const { userModel } = require('./auth/models/users-model');
+const { userModel } = require('./auth/models/usersSchema');
 const app = express();
 const dogsRouter = require('./auth/routes/dogs');
 const catsRouter = require('./auth/routes/cats');
@@ -21,14 +21,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(router);
 app.use(dogsRouter);
 app.use(catsRouter);
-app.use(notFound);
-app.use(errorHandler);
+// app.use(notFound);
+// app.use(errorHandler);
 
 // creating hello route: 
 
 app.get('/welcome', basicAuth, (req, res, next) => {
   let { name } = req.query;
-  res.status(200).send(`Welcome ${name}, this route is secured using Basic Auth!!`)
+  res.status(200).send(`Welcome ${name}, this route is secured using Basic Auth!!`);
 });
 
 app.get('/users', bearerAuth, async (req, res, next) => {
