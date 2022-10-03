@@ -18,6 +18,6 @@
 
 ![UML](UML%20Rough%20Draft%20Lab%2009.png)
 
-- [Link to PR:]()
+- [Link to PR:](https://github.com/AllieDunkel/Auth-Module-Final-Project/pull/15)
 
 - [Linked to Deployed Site](https://git.heroku.com/auth-module-project.git)
