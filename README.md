@@ -17,3 +17,7 @@
 - Rough Draft for UML Lab 09:
 
 ![UML](UML%20Rough%20Draft%20Lab%2009.png)
+
+- [Link to PR:]()
+
+- [Linked to Deployed Site](https://git.heroku.com/auth-module-project.git)
